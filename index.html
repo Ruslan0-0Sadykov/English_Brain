@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='style.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <title>English-Brain</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f7f9fc;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        .header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            border-bottom: 2px solid #e0e0e0;
+            position: relative;
+        }
+        .header-line {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+        }
+        .header-logo img {
+            margin-right: 15px;
+        }
+        .name {
+            color: #007acc; /* Изменение цвета для яркости */
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Добавление тени для текста */
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .nav-item {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-right: 20px;
+            position: relative;
+            transition: color 0.3s, transform 0.3s; /* Добавление эффекта при наведении */
+        }
+        .nav-item:hover {
+            color: #007acc; /* Яркий цвет при наведении */
+            transform: scale(1.1); /* Увеличение размера при наведении */
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-radius: 5px;
+            padding: 10px 0;
+        }
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+        .dropdown-item {
+            display: block;
+            padding: 10px 20px;
+            color: #007acc; /* Яркий цвет для подменю */
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dropdown-item:hover {
+            background-color: #e0f7fa; /* Легкий цвет при наведении */
+            color: #005f73; /* Темный цвет при наведении */
+        }
+        .box {
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s, background-color 0.3s; /* Эффект при наведении */
+        }
+        .box:hover {
+            transform: translateY(-5px);
+            background-color: #e0f7fa; /* Цвет фона при наведении */
+        }
+        .box h1 {
+            text-align: center;
+            color: #007acc; /* Яркий цвет заголовка */
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase; /* Приведение к верхнему регистру для яркости */
+        }
+        .box p {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        .box ul {
+            list-style-type: disc;
+            padding-left: 20px; /* Отступ для списка */
+            color: #333; /* Цвет текста списка */
+        }
+        .en-img {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .en-img img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .en-img img:hover {
+            transform: scale(1.05);
+        }
+        .socials {
+            display: flex;
+            align-items: center;
+        }
+        .socials img {
+            margin-left: 10px;
+            width: 30px;
+            height: 30px;
+        }
+        /* Новый стиль для блока о школе */
+        .school-info {
+            background-color: #e7f3fe;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            border-radius: 12px;
+            padding: 30px;
+        }
+        .school-info h2 {
+            text-align: center;
+            color: #007acc;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        .school-info p {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Медиа-запросы для адаптивного дизайна */
+        @media (max-width: 768px) {
+            .header-line {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .name {
+                font-size: 1.5rem;
+            }
+            .nav-item {
+                font-size: 0.9rem;
+            }
+            .box {
+                padding: 20px;
+            }
+            .box h1, .school-info h2 {
+                font-size: 1.5rem;
+            }
+            .box p, .school-info p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .name {
+                font-size: 1.2rem;
+            }
+            .nav-item {
+                font-size: 0.8rem;
+            }
+            .box h1, .school-info h2 {
+                font-size: 1.3rem;
+            }
+            .box p, .school-info p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+<div class='header'>
+    <div class='container'>
+        <div class='header-line'>        
+            <div class='header-logo'>
+                <img src="logo.png" width="100" height="100" alt="Логотип English-Brain">
+                <div class='name'>English-Brain</div>
+            </div>
+            <div class='nav'>
+                <div class='nav-item'>Курсы
+                    <div class="dropdown">
+                        <a class="dropdown-item" href="#course-it">Курс для IT</a>
+                        <a class="dropdown-item" href="#course-beginners">Курс для начинающих</a>
+                        <a class="dropdown-item" href="#course-pro">Курс PRO</a>
+                        <a class="dropdown-item" href="#course-individual">Индивидуальная программа</a>
+                        <a class="dropdown-item" href="#about-us">О НАС</a>
+                    </div>
+                </div>
+                <a class='nav-item' href="#about-us">О НАС</a>
+                <a class='nav-item' href="#support">Поддержка</a>
+            </div>
+            <div class='socials'>
+                <div class='we'>НАШИ СОЦСЕТИ</div>
+                <a href="#"><img src="Vk.png" alt="Иконка VK"></a>
+                <a href="#"><img src="Telegram.png" alt="Иконка Telegram"></a>
+                <a href="#"><img src="inst.png" alt="Иконка Instagram"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="box" id="course-it">
+        <h1>Курс английского для IT</h1>
+        <div class='en-img'> 
+            <img src="IT.jpg" alt="English course" width="40%">
+        </div>
+        <p>Этот курс разработан для профессионалов в IT, которые хотят улучшить свои знания английского языка для работы, общения и карьеры. Включает в себя:
+        <ul>
+            <li>Терминологию в области технологий.</li>
+            <li>Занятия по разговорному английскому для презентаций и собеседований.</li>
+            <li>Анализ специализированных текстов и документации.</li>
+        </ul>
+        </p>
+    </div>
+
+    <div class="box" id="course-beginners">
+        <h1>Курс для начинающих</h1>
+        <div class='en-img'> 
+            <img src="images.jpg" alt="English course" width="40%">
+        </div>
+        <p>Этот курс предназначен для быстрого старта в английском языке, в нем вы ознакомитесь с основами языка, погрузитесь в интерактивную языковую среду с первого занятия. Выучите более 1000 новых слов и фраз! Включает:
+        <ul>
+            <li>Занятия с опытными преподавателями.</li>
+            <li>Групповые и индивидуальные занятия.</li>
+            <li>Интерактивные игры и задания.</li>
+        </ul>
+        </p>
+    </div>
+
+    <div class="box" id="course-pro">
+        <h1>Английский PRO</h1>
+        <div class='en-img'> 
+            <img src="PRO.jpg" alt="English course" width="40%">
+        </div>
+        <p>Этот курс для продвинутых учеников, которые хотят достичь новых высот. Включает:
+        <ul>
+            <li>Занятия с носителями языка для повышения уровня.</li>
+            <li>Работа над акцентом и произношением.</li>
+            <li>Курсы по специализированной лексике для разных сфер.</li>
+        </ul>
+        </p>
+    </div>
+
+    <div class="box" id="course-individual">
+        <h1>Индивидуальная программа</h1>
+        <div class='en-img'> 
+            <img src="vip.jpg" alt="English course" width="40%">
+        </div>
+        <p>Разработка персонального учебного плана, исходя из вашего уровня и целей:
+        <ul>
+            <li>Анализ текущего уровня и целей.</li>
+            <li>Гибкое расписание занятий в зависимости от ваших потребностей.</li>
+            <li>Постоянная поддержка и рекомендации от наставника.</li>
+        </ul>
+        Проверьте ваш текущий уровень английского уже сегодня и начните путь к совершенству!
+        </p>
+    </div>
+
+    <!-- Новый блок с информацией о школе -->
+    <div class="school-info" id="about-us">
+         <h2>О нашей школе</h2>
+    <div class='en-img'> 
+        <img src="logo.png" alt="School image" width="40%">
+    </div>
+    <p>Наша онлайн школа английского языка "English-Brain" предлагает качественное образование и современные методики обучения. Мы заботимся о каждом студенте и создаем индивидуальные планы, чтобы помочь вам достичь ваших целей. Присоединяйтесь к нам, чтобы открыть для себя мир английского языка!</p>
+    
+    <!-- Преподавательский состав -->
+    <h3>Наши преподаватели</h3>
+    <p>В нашей команде только высококвалифицированные специалисты с международными сертификатами и многолетним опытом:</p>
+    <ul>
+        <li>Иван Иванов — эксперт по подготовке к международным экзаменам с опытом работы 10 лет.</li>
+        <li>Мария Петрова — носитель языка с сертификатом TEFL и автор уникальных методик обучения.</li>
+    </ul>
+
+    <!-- Отзывы студентов -->
+    <h3>Отзывы наших студентов</h3>
+    <blockquote>
+        <p>"После прохождения курса для IT я смог уверенно общаться с коллегами из других стран и получил повышение!" — Алексей, разработчик.</p>
+    </blockquote>
+    <blockquote>
+        <p>"Благодаря индивидуальной программе я значительно улучшила свой английский и сдала IELTS на высокий балл." — Елена, студентка.</p>
+    </blockquote>
+
+    <!-- Преимущества обучения -->
+    <h3>Преимущества обучения у нас</h3>
+    <ul>
+        <li>Доступ к интерактивным материалам и платформам.</li>
+        <li>Индивидуальный подход к каждому студенту.</li>
+        <li>Разнообразие курсов и программ.</li>
+        <li>Гибкое расписание занятий.</li>
+    </ul>
+
+    <!-- Контактная информация -->
+    <h3>Контактная информация</h3>
+    <p>Звоните нам: <strong>+7 (993) 942-10-08</strong></p>
+    <p>Пишите на email: <strong>info@english-brain.com</strong></p>
+    <p>Запишитесь на бесплатное пробное занятие прямо сейчас!</p>
+    </div>
+
+
+</div>
+
+</body>
+</html>
